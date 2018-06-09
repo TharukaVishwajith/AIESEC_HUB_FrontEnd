@@ -167,33 +167,19 @@
                         <div id="collapse1" class="panel-collapse collapse in">
                           <div class="panel-body">
                             <ul class="list-group">
-                              <li class="list-group-item"><i class="fa fa-circle"></i><span class="activity-item">Team Leader</span></li>
-                              <li class="list-group-item"><i class="fa fa-circle"></i><span class="activity-item">Raised Wise International School Kadhana</span></li>
-                              <li class="list-group-item"><i class="fa fa-circle"></i><span class="activity-item">Organized beach cleabup at panadura beach</span></li>
-                            </ul>
-                            <hr>
-                            <div class="comments">
-                              <div class="comment row">
-                                <div class="col-sm-2 text-center comment-profile-img">
-                                  <img src="images/avatar1.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+                              <li class="list-group-item">
+                                <i class="fa fa-circle"></i><span class="activity-item">Team Leader</span>
+                                <div class="comments">
+                                  <div class="comment row">
+                                    <div class="col-sm-2 text-center comment-profile-img">
+                                      <img src="images/avatar1.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+                                    </div>
+                                    <div class="col-sm-10 comment-content">
+                                      <h5>Anja <small>Sep 29, 2015, 9:12 PM</small></h5>
+                                      <p>good job!</p>
+                                    </div>
+                                  </div>
                                 </div>
-                                <div class="col-sm-10 comment-content">
-                                  <h5>Anja <small>Sep 29, 2015, 9:12 PM</small></h5>
-                                  <p>good job!</p>
-                                </div>
-                              </div>
-                              <div class="comment row">
-                                <div class="col-sm-2 text-center comment-profile-img">
-                                  <img src="images/avatar1.jpg" class="img-circle" height="65" width="65" alt="Avatar">
-                                </div>
-                                <div class="col-sm-10 comment-content">
-                                  <h5>Anja <small>Sep 29, 2015, 9:12 PM</small></h5>
-                                  <p>good job!</p>
-                                </div>
-                              </div>
-                            </div>
-
-
                                 <div class="form-group">
                                   <div class="col-md-10">
                                     <textarea class="form-control" rows="1" id="comment" placeholder="your comments"></textarea>
@@ -201,65 +187,16 @@
                                   <div class="col-md-2">
                                     <button type="submit" class="btn btn-success">Submit</button>
                                   </div>
-
                                 </div>
+                                <hr>
+                              </li>
+                              <li class="list-group-item"><i class="fa fa-circle"></i><span class="activity-item">Raised Wise International School Kadhana</span></li>
+                              <li class="list-group-item"><i class="fa fa-circle"></i><span class="activity-item">Organized beach cleabup at panadura beach</span></li>
+                            </ul>
+                            <hr>
                           </div>
                         </div>
                       </div>
-                      <!--<div id="data-container" class="panel panel-default">-->
-
-                      <!--</div>-->
-                      <!--<div class="panel panel-default">-->
-                        <!--<div class="panel-heading">-->
-                          <!--<h4 class="panel-title">-->
-                            <!--<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Youth Surge Forum 2017</a>-->
-                          <!--</h4>-->
-                        <!--</div>-->
-                        <!--<div id="collapse2" class="panel-collapse collapse">-->
-                          <!--<div class="panel-body">-->
-                            <!--<ul class="list-group">-->
-                              <!--<li class="list-group-item">Team Leader</li>-->
-                              <!--<li class="list-group-item">Raised Wise International School Kadhana</li>-->
-                              <!--<li class="list-group-item">Organized beach cleabup at panadura beach</li>-->
-                            <!--</ul>-->
-                            <!--<br>-->
-                            <!--<div class="activity-comments">-->
-                              <!--<form>-->
-                                <!--<div class="form-group">-->
-                                  <!--<textarea class="form-control" rows="1" id="comment" placeholder="your comments"></textarea>-->
-                                <!--</div>-->
-                              <!--</form>-->
-                            <!--</div>-->
-                          <!--</div>-->
-                        <!--</div>-->
-                      <!--</div>-->
-                   <!---->
-
-
-                      <!--<div class="panel panel-default">-->
-                        <!--<div class="panel-heading">-->
-                          <!--<h4 class="panel-title">-->
-                            <!--<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">APC GV 2018</a>-->
-                          <!--</h4>-->
-                        <!--</div>-->
-                        <!--<div id="collapse3" class="panel-collapse collapse">-->
-                          <!--<div class="panel-body">-->
-                            <!--<ul class="list-group">-->
-                              <!--<li class="list-group-item">Team Leader</li>-->
-                              <!--<li class="list-group-item">Raised Wise International School Kadhana</li>-->
-                              <!--<li class="list-group-item">Organized beach cleabup at panadura beach</li>-->
-                            <!--</ul>-->
-                            <!--<br>-->
-                            <!--<div class="activity-comments">-->
-                              <!--<form>-->
-                                <!--<div class="form-group">-->
-                                  <!--<textarea class="form-control" rows="1" id="comment" placeholder="your comments"></textarea>-->
-                                <!--</div>-->
-                              <!--</form>-->
-                            <!--</div>-->
-                          <!--</div>-->
-                        <!--</div>-->
-                      <!--</div>-->
                     </div>
                   </div>
                   <div id="pagination-container">
@@ -325,6 +262,35 @@
 <script src="js/scripts.js"></script>
 <script src="js/pagination.min.js"></script>
 <script>
+    localStorage.setItem('loggedUserId','se-2013-038')
+
+    function doComment(activityId) {
+        var id = '#comment' + activityId;
+        var cmt = $(id).val();
+        var userId = localStorage.getItem('loggedUserId');
+
+        var comment = {
+            comment: $(id).val(),
+            activityId: activityId ,
+            userId: userId
+        };
+        var url = 'http://localhost:8080/api/v1/activity/addComment';
+
+        fetch(url, {
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify(comment), // data can be `string` or {object}!
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then((response) => {
+            console.log('Success:', response)
+        window.ns();
+    });
+        console.log(comment)
+    }
+
     $( function() {
      var profile = localStorage.getItem("selectedProfile");
      profile = JSON.parse(profile);
@@ -344,39 +310,36 @@
         }
 
 
-
-
-
-        $('#pagination-container').pagination({
+//        start();
+        window.ns = function () {
+    $('#pagination-container').pagination({
 //        dataSource: [1, 2, 3, 4, 5, 6, 7, 8,9,10,11,12,13,14,15],
-            dataSource: function(done) {
-                $.ajax({
-                    type: 'GET',
-                    url: 'http://localhost:8080/api/v1/project/getProjectUserDetails?studentId=' + profile.studentId,
-                    success: function (response) {
-                       var data = JSON.parse(response).data;
-                        done(data);
-                        console.log(data)
-                    }
-                });
-            },
-            pageSize: 8,
-            callback: function(data, pagination) {
+        dataSource: function(done) {
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8080/api/v1/project/getProjectUserDetails?studentId=' + profile.studentId,
+                success: function (response) {
+                    var data = JSON.parse(response).data;
+                    done(data);
+                    console.log(data)
+                }
+            });
+        },
+        pageSize: 8,
+        callback: function(data, pagination) {
             console.log(data)
             console.log(pagination)
-                var html = simpleTemplating(data);
-                $('#accordion').html(html);
-            }
-        });
-
-
+            var html = simpleTemplating(data);
+            $('#accordion').html(html);
+        }
+    });
+}
+        window.ns();
         function simpleTemplating(data) {
-
-            console.log(data)
+//            console.log(data)
             var html = '';
-
             $.each(data, function(index, item){
-                var activityComments = []
+
                 var projectName = item.userProject.project.name;
 
                 html += '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title">';
@@ -385,47 +348,42 @@
                 html += '<div class="panel-body"><ul class="list-group">';
 
                 item.activities.forEach(function (activity) {
-                    html += '<li class="list-group-item"><i class="fa fa-circle"></i><span class="activity-item">'+ activity.name +'</span></li>'
-                    activityComments = activityComments.concat(activity.activityComments)
+                  var  activityComments = activity.activityComments;
+                  var activityId = activity.activityId;
+
+                    html += '<li class="list-group-item"><i class="fa fa-circle"></i><span class="activity-item">'+ activity.name +'</span><div class="comments">';
+                    activityComments.forEach(function (comment) {
+                        var profileImg = 'images/avatar1.jpg';
+                        var description = comment.description;
+                        var commentDate = new Date(comment.dateTime).toLocaleString();
+                        var commentUsername = comment.user.firstName;
+
+                        if(comment.user.profilePic !== null && comment.user.profilePic !== ""){
+                            profileImg = 'data:image/png;base64, '+ comment.user.profilePic;
+                        }
+
+                        html += '<div class="comment row"><div class="col-sm-2 text-center comment-profile-img">';
+                        html += '<img src="'+ profileImg +'" class="img-circle" height="65" width="65" alt="Avatar"></div>'
+                        html += '<div class="col-sm-10 comment-content">';
+                        html += '<h5>' + commentUsername + ' <small>'+ commentDate +'</small></h5>';
+                        html += '<p>' + description + '</p></div></div>'
+                    });
+
+                    html += '<div class="form-group"><div class="col-md-10">';
+                    html += '<textarea class="form-control" rows="1" id="comment'+activityId+'" placeholder="Enter your comment here"></textarea>'
+                    html += '</div><div class="col-md-2">';
+                    html += '<button onclick="doComment(this.value)" value="'+ activityId +'" class="btn btn-success">Submit</button>'
+                    html += '</div></div>';
+
+                    html += '</div></li><br><hr>'
                 });
-
-//                html += '<li class="list-group-item"><i class="fa fa-circle"></i><span class="activity-item">Team Leader</span></li>'
-//                html += '<li class="list-group-item"><i class="fa fa-circle"></i><span class="activity-item">Team Leader</span></li>'
-//                html += '<li class="list-group-item"><i class="fa fa-circle"></i><span class="activity-item">Team Leader</span></li>'
+                html += '</ul><hr>';
 
 
-                html += '</ul><hr><div class="comments">'
-
-
-                activityComments.forEach(function (comment) {
-                    var profileImg = 'images/avatar1.jpg';
-                    var description = comment.description;
-                    var commentDate = new Date(comment.dateTime).toLocaleString()
-                    var commentUsername = comment.user.firstName
-
-                    if(comment.user.profilePic !== null && comment.user.profilePic !== ""){
-                        profileImg = 'data:image/png;base64, '+ comment.user.profilePic;
-                    }
-
-                    html += '<div class="comment row"><div class="col-sm-2 text-center comment-profile-img">'
-                    html += '<img src="'+ profileImg +'" class="img-circle" height="65" width="65" alt="Avatar"></div>'
-                    html += '<div class="col-sm-10 comment-content">'
-                    html += '<h5>' + commentUsername + ' <small>'+ commentDate +'</small></h5>'
-                    html += '<p>' + description + '</p></div></div>'
-                })
-
-                html += '</div><div class="form-group"><div class="col-md-10">'
-                html += '<textarea class="form-control" rows="1" id="comment" placeholder="your comments"></textarea>'
-                html += '</div><div class="col-md-2">'
-                html += '<button type="submit" class="btn btn-success">Submit</button>'
-                html += '</div></div></div></div></div>'
-
-                console.log(activityComments)
-
+                html += '</div></div></div>'
             });
             return html;
         }
-
     } );
 </script>
 </body>
