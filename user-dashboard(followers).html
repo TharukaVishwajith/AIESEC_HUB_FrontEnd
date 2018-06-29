@@ -22,6 +22,7 @@
 <!--collapse stylesheet-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -33,6 +34,32 @@
   .list-group-item{
     display: table-row-group;
   }
+  #pagination-container ul {
+      list-style-type: none;
+      margin: 0;
+      /*padding-left: 40px;*/
+      overflow: hidden;
+      background-color: #fff;
+  }
+
+  #pagination-container li {
+      float: left;
+      padding: 10px
+  }
+    .img-item{
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #abafaf;
+        /* padding: 18px; */
+        border-radius: 16px;
+        /* margin-right: -4px; */
+
+    }
+    .uploaded-date{
+        color: #909294;
+        margin-top: -15px;
+        font-size: 11px;
+    }
 </style>
 
 </head>
@@ -168,109 +195,49 @@
               <!-- Nav Tabs -->
               <ul class="nav nav-tabs">
                 <li><a data-toggle="tab" href="#connec">Activities</a></li>
-                <li class="active"><a data-toggle="tab" href="#flow">Gallery</a></li>
+                <li><a data-toggle="tab" href="#flow">Gallery</a></li>
                 <!--<li><a data-toggle="tab" href="#flowing">Following (100)</a></li>-->
               </ul>
 
-              <div class="sidebar">
+              <div class="sidebar tab-content">
                 <!--<div class="sidebar">-->
                       <!--<h5 class="main-title">Participated Projects/Events/Activities</h5>-->
                       <div class="sidebar-information">
 
-                        <div class="collapse-activities">
+                        <div class="collapse-activities tab-pane fade in active" id="connec">
                           <div class="panel-group" id="accordion">
-                          <div class="panel panel-default">
-                            <div class="panel-heading">
-                              <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Beach Cleanup</a>
-                              </h4>
-                            </div>
-                            <div id="collapse1" class="panel-collapse collapse in">
-                              <div class="panel-body">
-                                <ul class="list-group">
-                                    <li class="list-group-item">Participants</li>
-                                    <li class="list-group-item">Date</li>
-                                    <li class="list-group-item">Location</li>
-                                    <li class="list-group-item">Description</li>
-                                </ul>
-                                <br>
-                                <br>
-                                <div class="col-sm-2 text-center">
-                                  <img src="images/med-avatar.jpg" class="img-circle" height="65" width="65" alt="Avatar">
-                                </div>
-                                <div class="col-sm-10">
-                                  <h5>Anja <small>Sep 29, 2015, 9:12 PM</small></h5>
-                                  <p>good job!</p>
-                                  <br>
-                                </div>
-                                <div class="activity-comments">
-                                  <form>
-                                    <div class="form-group">
-                                      <div class="col-md-10">
-                                        <textarea class="form-control" rows="1" id="comment" placeholder="your comments"></textarea>
+                        </div>
+                        </div>
+
+                          <div class="tab-pane fade" id="flow">
+                              <div id="image-gallery-content">
+                                  <div >
+                                      <div class="img-item col-md-6">
+                                          <img src="images/med-avatar.jpg" width="320px">
+                                          <p>test image</p>
+                                          <p class="uploaded-date">test image</p>
                                       </div>
-                                      <div class="col-md-2">
-                                        <button type="submit" class="btn btn-success">Submit</button>
+                                      <div class="img-item col-md-6">
+                                          <img src="images/med-avatar.jpg" width="320px">
+                                          <p>test image</p>
+                                          <p class="uploaded-date">test image</p>
                                       </div>
-                                      
-                                    </div>
-                                  </form>
-                                </div>
+                                      <div class="img-item col-md-6">
+                                          <img src="images/med-avatar.jpg" width="320px">
+                                          <p>test image</p>
+                                          <p class="uploaded-date">test image</p>
+                                      </div>
+                                      <div class="img-item col-md-6">
+                                          <img src="images/med-avatar.jpg" width="320px">
+                                          <p>test image</p>
+                                          <p class="uploaded-date">test image</p>
+                                      </div>
+                                  </div>
+
+
                               </div>
-                            </div>
+                             <div id="pagination-container"></div>
                           </div>
-                          <div class="panel panel-default">
-                            <div class="panel-heading">
-                              <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Youth Surge Forum 2017</a>
-                              </h4>
-                            </div>
-                            <div id="collapse2" class="panel-collapse collapse">
-                              <div class="panel-body">
-                                <ul class="list-group">
-                                    <li class="list-group-item">Participants</li>
-                                    <li class="list-group-item">Date</li>
-                                    <li class="list-group-item">Location</li>
-                                    <li class="list-group-item">Description</li>
-                                </ul>
-                                <br>
-                                <div class="activity-comments">
-                                  <form>
-                                    <div class="form-group">
-                                      <textarea class="form-control" rows="1" id="comment" placeholder="your comments"></textarea>
-                                    </div>
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="panel panel-default">
-                            <div class="panel-heading">
-                              <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">APC GV 2018</a>
-                              </h4>
-                            </div>
-                            <div id="collapse3" class="panel-collapse collapse">
-                              <div class="panel-body">
-                                <ul class="list-group">
-                                    <li class="list-group-item">Participants</li>
-                                    <li class="list-group-item">Date</li>
-                                    <li class="list-group-item">Location</li>
-                                    <li class="list-group-item">Description</li>
-                                </ul>
-                                <br>
-                                <div class="activity-comments">
-                                  <form>
-                                    <div class="form-group">
-                                      <textarea class="form-control" rows="1" id="comment" placeholder="your comments"></textarea>
-                                    </div>
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div> 
-                      </div>
                       </div>
                     </div>
               </div>
@@ -331,6 +298,8 @@
 <script src="js/owl.carousel.min.js"></script> 
 <script src="js/gmap3.min.js"></script> 
 <script src="js/scripts.js"></script>
+<script src="js/pagination.min.js"></script>
+
 <script>
     localStorage.setItem('loggedUserId','se-2013-038')
   var projectId = 1;
@@ -360,7 +329,86 @@
               }
           })
           $("#ocMembers").html(ocMembersListHtml)
+          renderActivities(data.activityUsers)
       });
+
+    function doComment(activityId) {
+        var id = '#comment' + activityId;
+        var cmt = $(id).val();
+        var userId = localStorage.getItem('loggedUserId');
+
+        var comment = {
+            comment: $(id).val(),
+            activityId: activityId ,
+            userId: userId
+        };
+        var url = 'http://localhost:8080/api/v1/activity/addComment';
+
+        fetch(url, {
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify(comment), // data can be `string` or {object}!
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then((response) => {
+            console.log('Success:', response)
+        window.ns();
+    });
+        console.log(comment)
+    }
+
+  function renderActivities(activities) {
+      var html = '';
+
+      var index = 0;
+
+      for(var activity of activities ){
+          console.log(activity)
+          var startDate = new Date(activity.activity.startDate).toLocaleDateString();
+          var endDate = new Date(activity.activity.endDate).toLocaleDateString();
+          var description = activity.activity.description;
+          var activityId =  activity.activity.activityId;
+
+          html+= ' <div class="panel panel-default"><div class="panel-heading">';
+          html+= ' <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse'+index+'">';
+          html+= 'Beach Cleanup</a></h4></div>'
+
+          html+= '<div id="collapse'+index+'" class="panel-collapse collapse"><div class="panel-body"><ul class="list-group">';
+          html+= '<li class="list-group-item">Participants: &nbsp';
+          activity.users.forEach(function (user) {
+              html+= '<span style="color:#898989;font-weight:bold">'+user.firstName+ ' ' + user.lastName+ '</span> | '
+          })
+          html+= '</li>';
+          html+= '<li class="list-group-item">Start Date: &nbsp'+startDate+'</li>';
+          html+= '<li class="list-group-item">End Date: &nbsp'+endDate+'</li>';
+          html+= '<li class="list-group-item">Description: &nbsp'+description+'</li></ul><br><br>';
+          activity.activity.activityComments.forEach(function (comment) {
+              var user = comment.user.firstName;
+              var dateTime = new Date(comment.dateTime);
+              var description = comment.description;
+              var profileImg = 'images/med-avatar.jpg';
+              if(comment.user.profilePic !== null && comment.user.profilePic !== ""){
+                  profileImg = 'data:image/png;base64, '+ comment.user.profilePic;
+              }
+
+              html+= '<div class="col-sm-2 text-center"><img src="'+profileImg+'" class="img-circle" height="65" width="65" alt="Avatar"></div>';
+              html+= '<div class="col-sm-10">';
+              html+= '<h5>'+ user +' <small>'+ dateTime +'</small></h5>';
+              html+= '<p>'+ description +'</p><br></div>';
+          });
+          html+= '<div class="activity-comments">';
+          html+= '<form><div class="form-group"><div class="col-md-10"><div class="form-group">'
+          html+= '<textarea class="form-control" rows="1" id="comment'+activityId+'" placeholder="your comments"></textarea></div>';
+          html+= '<div class="col-md-2"><button onclick="doComment(this.value)" value="'+ activityId +'" class="btn btn-success">Submit</button></div>';
+          html+= '</div></form></div></div></div></div></div>';
+
+          index++;
+      }
+
+      $("#accordion").html(html)
+  }
   loadProjectComments();
   function loadProjectComments() {
       var getCommentUrl = 'http://localhost:8080/api/v1/project/getComments?projectId=' + projectId;
@@ -433,6 +481,47 @@
 //  <br>
 //  </div>
 
+
+    $('#pagination-container').pagination({
+//        dataSource: [1, 2, 3, 4, 5, 6, 7, 8,9,10,11,12,13,14,15],
+        dataSource: function(done) {
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8080/api/v1/project/getImages?projectId=' + projectId,
+                success: function (response) {
+                    var data = JSON.parse(response).data;
+                    done(data);
+                    console.log(data)
+                }
+            });
+        },
+        pageSize: 6,
+        callback: function(data, pagination) {
+            console.log(data)
+            console.log(pagination)
+            var html = simpleTemplating(data);
+            $('#image-gallery-content').html(html);
+        }
+    });
+
+    function simpleTemplating(data) {
+        var html = '';
+
+        data.forEach(function (image) {
+            var imageData = "images/med-avatar.jpg";
+            var description = image.description;
+            var date = new Date(image.dateTime)
+            if(image.image !== null && image.image !== "" ){
+                imageData = 'data:image/png;base64, '+ image.image;
+            }
+            html += '<div class="img-item col-md-6">'
+            html += '<img src="'+imageData+'" width="350px">'
+            html += ' <p>'+description+'</p>';
+            html += '<p class="uploaded-date">'+date.toLocaleString()+'</p> </div>'
+        })
+
+        return html;
+    }
 
 </script>
 
