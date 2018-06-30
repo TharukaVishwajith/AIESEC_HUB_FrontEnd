@@ -173,10 +173,16 @@ $(function () {
         case 'getCroppedCanvas':
           if (result) {
             // Bootstrap's Modal
+              $('#saveImageBtn').on('click',function () {
+                  var imageStringToUpload = result.toDataURL(uploadedImageType);
+                  localStorage.setItem('imageStringToUpload',imageStringToUpload);
+                  window.history.back();
+              });
             $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
 
             if (!$download.hasClass('disabled')) {
               download.download = uploadedImageName;
+
               $download.attr('href', result.toDataURL(uploadedImageType));
             }
           }
@@ -271,5 +277,7 @@ $(function () {
   } else {
     $inputImage.prop('disabled', true).parent().addClass('disabled');
   }
+
+
 
 });
