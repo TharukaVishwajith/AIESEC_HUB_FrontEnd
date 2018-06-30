@@ -312,7 +312,27 @@
 
 //        start();
         window.ns = function () {
-
+            $('#pagination-container').pagination({
+//        dataSource: [1, 2, 3, 4, 5, 6, 7, 8,9,10,11,12,13,14,15],
+                dataSource: function(done) {
+                    $.ajax({
+                        type: 'GET',
+                        url: 'http://localhost:8080/api/v1/project/getProjectUserDetails?studentId=' + profile.studentId,
+                        success: function (response) {
+                            var data = JSON.parse(response).data;
+                            done(data);
+                            console.log(data)
+                        }
+                    });
+                },
+                pageSize: 8,
+                callback: function(data, pagination) {
+                    console.log(data)
+                    console.log(pagination)
+                    var html = simpleTemplating(data);
+                    $('#accordion').html(html);
+                }
+            });
 }
         window.ns();
         function simpleTemplating(data) {
