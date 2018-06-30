@@ -243,24 +243,21 @@
               <div id="manage-account" class="tab-pane fade">
 
                 <div class="listing listing-1">
+                  <div class="col-md-12" style="margin-bottom: 25px;">
+                    <div class="col-md-4">
+                      <img id="profile-pic-change" src="images/avatar.jpg" style="height: 300px; width: 300px;">
+                    </div>
+                    <div class="col-md-4">
+                      <button class="btn btn-primary"><a style="color: white" href="image-uploader.html">Change image</a></button>
+                    </div>
+                  </div>
+
                   <div class="listing-section">
                     <div class="listing-ver-3">
-                      <!--<div class="listing-heading">-->
-                        <!--<h5>Front-End Web Developer</h5>-->
-                      <!--</div>-->
+
                       <div class="listing-inner">
-                        <!--<div class="listing-content">-->
-                          <!--<h6 class="title-company">Mars Planet Telecommunications Inc.</h6>-->
-                          <!--<span class="location"> <i class="fa fa-map-marker"></i> Manhattan, New york, USA </span> <span class="type-work full-time"> Full Time </span>-->
-                          <!--<p>Proin gravida nibh vel velit auctor aliquet aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio pellentesque habitant morbi tristique senectus et netus et malesuada. <a href="single_job.html">read more</a></p>-->
-                          <!--<h6 class="title-tags">Skills required:</h6>-->
-                          <!--<ul class="tags list-inline">-->
-                            <!--<li><a href="#">Javascript</a></li>-->
-                            <!--<li><a href="#">Wordpress</a></li>-->
-                            <!--<li><a href="#">Presta</a></li>-->
-                            <!--<li><a href="#">Sass</a></li>-->
-                          <!--</ul>-->
-                        <!--</div>-->
+
+
                         <div class="col-md-6" >
                           <div class="form-group">
                             <label class="col-md-4 control-label" for="studentId">Student No</label>
@@ -452,6 +449,7 @@ $(function () {
         getUserData();
 
         function renderProfileData(profile) {
+
             $("#username").html(  profile.firstName + ' ' + profile.lastName ) ;
             $("#email").html(  profile.email ) ;
             $("#hometown").html(  profile.hometown ) ;
@@ -463,6 +461,13 @@ $(function () {
             if(profile.profilePic !== null && profile.profilePic !== "" ){
                 var img = 'data:image/png;base64, '+ profile.profilePic;
                 $("#profile-pic").attr("src", img);
+                var imgToUpload = localStorage.getItem('imageStringToUpload');
+                if(imgToUpload !== null){
+                    $("#profile-pic-change").attr("src", imgToUpload);
+                }else{
+                    $("#profile-pic-change").attr("src", img);
+                }
+
             }
 
             var dob = new Date(profile.dob);
@@ -577,6 +582,11 @@ $(function () {
             var dob = $("#dob").val()
             var description = $("#user-description").val()
             var position = $("#user-position").val()
+            var newProfilePic = localStorage.getItem('imageStringToUpload');
+            var profilePic = null;
+            if(newProfilePic !== null){
+                profilePic = newProfilePic.split(',')[1];
+            }
 
             var user = {
                 studentId: studentId,
@@ -588,7 +598,8 @@ $(function () {
                 hometown: hometown,
                 address: address,
                 dob: dob,
-                position: position
+                position: position,
+                profilePic: profilePic
             }
 
             var url = 'http://localhost:8080/api/v1/user/updateUser';
@@ -603,6 +614,7 @@ $(function () {
             .catch(error => console.error('Error:', error))
             .then((response) => {
                 console.log('Success:', response)
+                localStorage.removeItem('imageStringToUpload');
                 alert("Data updated successfully")
             getUserData();
         });
@@ -610,6 +622,11 @@ $(function () {
             console.log(user)
         });
     } );
+
+    window.onbeforeunload = function (e) {
+        localStorage.removeItem('imageStringToUpload');
+    };
+
 </script>
 </body>
 
